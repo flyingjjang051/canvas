@@ -1,0 +1,358 @@
+.link {
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  position: relative;
+  margin-top: 80px;
+  padding: 0 50px;
+}
+.link .txt {
+  position: relative;
+  z-index: 2;
+}
+.link i {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #f52f23;
+  border-radius: 100px;
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.link .material-icons {
+  position: absolute;
+  right: 0;
+  vertical-align: middle;
+  top: -4px;
+}
+
+#main {
+  overflow: hidden;
+  height: 100vh;
+}
+#main .section .inner {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main .section .inner .contentsBox {
+  width: 1280px;
+  margin: 0 auto;
+}
+#main .section .inner .contentsBox h2 {
+  font-size: 68px;
+  font-weight: 700;
+}
+#introduce {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#introduce p {
+  font-size: 20px;
+  font-weight: 500;
+}
+#introduce p strong {
+  display: block;
+  font-size: clamp(24px, 8vw, 64px);
+  font-weight: 900;
+  margin-top: 20px;
+}
+
+#vision .inner {
+  background-color: #fff;
+}
+#vision .inner .contentsBox {
+  display: flex;
+  justify-content: space-between;
+}
+#vision .inner .contentsBox .list li {
+  display: flex;
+  margin-bottom: 50px;
+  position: relative;
+  padding-left: 200px;
+}
+#vision .inner .contentsBox .list li h3 {
+  font-size: 24px;
+  color: #f52f23;
+  font-weight: 700;
+  margin-right: 100px;
+  position: absolute;
+  left: 0;
+}
+#vision .inner .contentsBox .list li div strong {
+  font-weight: 500;
+  display: block;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+#vision .inner .ballBox {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  bottom: 0;
+  height: 150px;
+}
+#vision .inner .ballBox .ball {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  position: absolute;
+  mix-blend-mode: difference;
+  filter: invert(100);
+}
+#vision .inner .ballBox .ball.fill {
+  background-color: #f52f23;
+}
+#vision .inner .ballBox .ball.line {
+  border: 4px solid #f52f23;
+}
+
+#what .inner {
+  background-color: #000;
+  color: #fff;
+}
+#what .inner .contentsBox .list {
+  margin-top: 100px;
+}
+#what .inner .contentsBox .list > ul {
+  display: flex;
+  justify-content: space-between;
+}
+#what .inner .contentsBox .list > ul li .icon {
+  position: relative;
+  margin-bottom: 50px;
+}
+#what .inner .contentsBox .list > ul li .icon span {
+  border-radius: 100%;
+}
+#what .inner .contentsBox .list > ul li:nth-child(1) .icon span, #what .inner .contentsBox .list > ul li:nth-child(4) .icon span {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+#what .inner .contentsBox .list > ul li:nth-child(1) .icon span:nth-child(1), #what .inner .contentsBox .list > ul li:nth-child(4) .icon span:nth-child(1) {
+  left: 30px;
+  top: -30px;
+  animation: icon0101 3s ease infinite;
+}
+#what .inner .contentsBox .list > ul li:nth-child(1) .icon span:nth-child(2), #what .inner .contentsBox .list > ul li:nth-child(4) .icon span:nth-child(2) {
+  animation: icon0102 3s ease infinite;
+}
+#what .inner .contentsBox .list > ul li:nth-child(1) .icon span:nth-child(3), #what .inner .contentsBox .list > ul li:nth-child(4) .icon span:nth-child(3) {
+  background-color: #f52f23;
+  left: 30px;
+  animation: icon0103 3s ease infinite;
+}
+#what .inner .contentsBox .list > ul li:nth-child(2) .icon span {
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  border-radius: 100%;
+  position: absolute;
+}
+#what .inner .contentsBox .list > ul li:nth-child(2) .icon span:nth-child(1) {
+  background-color: rgba(255, 255, 255, 0.2);
+  animation: icon0201 2s ease infinite;
+}
+#what .inner .contentsBox .list > ul li:nth-child(2) .icon span:nth-child(2) {
+  background-color: #f52f23;
+  left: 25px;
+  animation: icon0202 2s ease infinite;
+}
+#what .inner .contentsBox .list > ul li:nth-child(3) .icon span {
+  border-radius: 100%;
+  position: absolute;
+}
+#what .inner .contentsBox .list > ul li:nth-child(3) .icon span:nth-child(1) {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  transform: translateY(-10px);
+}
+#what .inner .contentsBox .list > ul li:nth-child(3) .icon span:nth-child(2) {
+  background-color: #f52f23;
+  width: 14px;
+  height: 14px;
+  margin-top: 13px;
+  margin-left: -7px;
+  transform: translateY(-10px);
+  transform-origin: 27px 50%;
+  animation: icon0302 2s linear infinite;
+}
+#what .inner .contentsBox .list > ul li strong {
+  font-size: 24px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 30px;
+}
+#what .inner .contentsBox .list > ul li ul li {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#insight .inner {
+  background-color: #fff;
+}
+
+#together .inner {
+  background-color: #f52f23;
+}
+
+#footer .inner {
+  background-color: #000;
+}
+
+#main .pagination {
+  position: fixed;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+}
+#main .pagination .swiper-pagination-bullet {
+  margin: 20px 0;
+  opacity: 1;
+  position: relative;
+  outline: none;
+  transition: all 0.25s ease;
+}
+#main .pagination .swiper-pagination-bullet:before {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+#main .pagination .swiper-pagination-bullet:last-child {
+  display: none;
+}
+#main .pagination .swiper-pagination-bullet:hover .tooltip {
+  opacity: 1;
+}
+#main .pagination .swiper-pagination-bullet .tooltip {
+  white-space: nowrap;
+  position: absolute;
+  right: 20px;
+  padding: 15px 30px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+#main .pagination .swiper-pagination-bullet-active {
+  background-color: #f52f23;
+}
+#main .pagination .swiper-pagination-bullet-active .tooltip {
+  background-color: #f52f23;
+  color: #fff;
+}
+
+@keyframes icon0101 {
+  0% {
+    top: -30px;
+  }
+  25% {
+    top: 0px;
+  }
+  50% {
+    top: -30px;
+  }
+  75% {
+    top: -30px;
+  }
+  100% {
+    top: -30px;
+  }
+}
+@keyframes icon0102 {
+  0% {
+    left: 0px;
+  }
+  25% {
+    left: 0px;
+  }
+  50% {
+    left: 0px;
+  }
+  75% {
+    left: 30px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+@keyframes icon0103 {
+  0% {
+    top: 0px;
+    left: 30px;
+  }
+  25% {
+    top: -30px;
+    left: 30px;
+  }
+  50% {
+    top: 0px;
+    left: 30px;
+  }
+  75% {
+    top: 0;
+    left: 0;
+  }
+  100% {
+    top: 0;
+    left: 30px;
+  }
+}
+@keyframes icon0201 {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 25px;
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes icon0202 {
+  0% {
+    left: 25px;
+  }
+  50% {
+    left: 0;
+  }
+  100% {
+    left: 25px;
+  }
+}
+@keyframes icon0302 {
+  0% {
+    transform: translateY(-10px) rotate(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(360deg);
+  }
+}
