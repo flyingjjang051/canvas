@@ -39,6 +39,8 @@
       });
       const ctx = canvas.getContext("2d");
       // 클래스는 관행상 대문자로 시작한다.
+      const rains = [];
+      const drops = [];
       class Rain {
         x = 0;
         y = 0;
@@ -47,11 +49,10 @@
           y: 0,
         };
 
-        constructor(_x, _y, velocity) {
+        constructor(_x, _y, _velocity) {
           this.x = _x;
           this.y = _y;
-          this.velocity = velocity;
-          console.log("나는 비입니다.");
+          this.velocity = _velocity;
         }
         draw() {
           ctx.strokeStyle = "rgba(255,255,255,1)";
@@ -65,19 +66,22 @@
           if (this.y > canvas.height) {
             this.y = -20;
             this.x = Math.random() * canvas.width;
-            this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 10 + 5 };
+            this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 10 + 10 };
+            for (let i = 0; i < 3; i++) {
+              drops.push(new RainDrop(this.x, canvas.height, { x: Math.random() * 10 - 5, y: -(Math.random() * 5 + 10) }));
+            }
           }
+          console.log(drops.length);
           this.y = this.y + this.velocity.y;
           this.x = this.x + this.velocity.x;
           this.draw();
         }
       }
-      const rains = [];
+
       for (let i = 0; i < 100; i++) {
-        const rain = new Rain(i * 5, Math.random() * 800, { x: Math.random() * 2 - 1, y: Math.random() * 10 + 5 });
+        const rain = new Rain(i * 5, Math.random() * 800, { x: Math.random() * 2 - 1, y: Math.random() * 10 + 10 });
         rains.push(rain);
       }
-
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         //ctx.fillStyle = "rgba(0,0,0,1)";
@@ -85,10 +89,38 @@
         rains.forEach(function (item, idx) {
           item.fall();
         });
+        drops.forEach(function (item, idx) {
+          item.fall();
+          if (item.y > canvas.height) {
+            drops.splice(idx, 1);
+          }
+        });
         window.requestAnimationFrame(animate);
       }
       animate();
       //setInterval(animate, 1);
+
+      class RainDrop {
+        constructor(_x, _y, _velocity) {
+          this.x = _x;
+          this.y = _y;
+          this.velocity = _velocity;
+          this.gravity = 1;
+          console.log("빗방울이 생성되었습니다.");
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(255,255,255,1)";
+          ctx.arc(this.x, this.y, 1.25, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        fall() {
+          this.x += this.velocity.x;
+          this.y += this.velocity.y;
+          this.velocity.y += this.gravity;
+          this.draw();
+        }
+      }
     </script>
   </body>
 </html>
