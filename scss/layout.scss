@@ -11,7 +11,9 @@ button {
 body {
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
   word-break: keep-all;
-  background-color: #111;
+  background-image: url("../images/main/mainVisual01.jpg");
+  background-size: cover;
+  overflow: hidden;
 }
 a {
   color: inherit;
