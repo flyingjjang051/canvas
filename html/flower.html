@@ -38,66 +38,6 @@
         canvas.height = window.innerHeight;
       });
       const ctx = canvas.getContext("2d");
-
-      class Snow {
-        // 생성자함수  눈의 크기, 위치, 속도
-        // 메서드함수  fall(),
-        // 속성변수   크기,속도,위치
-        x = 0;
-        y = 0;
-        loadX = this.x;
-        size = 0;
-        velocity = 0;
-        t = 0;
-        radius = 0;
-        tSpeed = 0;
-        constructor(_x, _y, _velocity, _radius) {
-          this.x = _x;
-          this.y = _y;
-          this.t = Math.random() * Math.PI * 2;
-          this.loadX = this.x;
-          this.velocity = _velocity;
-          this.size = Math.random() * 5 + 2;
-          this.radius = _radius;
-          this.tSpeed = Math.random() * 0.05 + 0.05;
-          console.log("나는 눈입니다.");
-        }
-        draw() {
-          ctx.fillStyle = "rgba(255,255,255,1)";
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        fall() {
-          if (this.y > canvas.height) {
-            this.y = -20;
-            this.x = Math.random() * canvas.width;
-            this.loadX = this.x;
-            this.velocity = Math.random() * 3 + 3;
-          }
-          this.y = this.y + this.velocity;
-          this.x = this.loadX + Math.sin(this.t) * this.radius;
-          this.t = this.t + this.tSpeed;
-          this.draw();
-        }
-      }
-      const snows = [];
-      for (let i = 0; i < 100; i++) {
-        const snow = new Snow(i * 20, Math.random() * 800, Math.random() * 3 + 3, Math.random() * 5 + 5);
-        snows.push(snow);
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        //ctx.fillStyle = "rgba(0,0,0,1)";
-        //ctx.fillRect(0, 0, canvas.width, canvas.height);
-        snows.forEach(function (item, idx) {
-          item.fall();
-        });
-        window.requestAnimationFrame(animate);
-      }
-      animate();
-      //setInterval(animate, 1);
     </script>
   </body>
 </html>
