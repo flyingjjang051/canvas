@@ -11,12 +11,9 @@ button {
 body {
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
   word-break: keep-all;
-  background-image: url("../images/main/mainVisual01.jpg");
+  background-image: url("../images/bg-corona.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
-  min-height: 5000px;
-  //overflow: hidden;
-  //background-color: rgb(47, 123, 133);
 }
 a {
   color: inherit;
@@ -28,7 +25,7 @@ a {
   height: 100%;
   top: 0;
   left: 0;
-  pointer-events: none;
+  //pointer-events: none;
   z-index: 9999;
 }
 #main {
