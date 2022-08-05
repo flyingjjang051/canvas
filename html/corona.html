@@ -112,10 +112,10 @@
         ctx.fillStyle = "rgba(255,255,255,1)";
         ctx.fillText("SCORE : " + score, 50, 50);
         if (leftDown) {
-          ship.speedX = -10;
+          ship.speedX = -5;
         }
         if (rightDown) {
-          ship.speedX = 10;
+          ship.speedX = 5;
         }
         if (spaceDown) {
           bulletCount++;
@@ -137,6 +137,7 @@
             if (item.x > item02.x && item.x < item02.x + item02.width - item.width / 2 && item.y < item02.y + item02.height) {
               item.status = 0;
               item02.status = 0;
+              score += 1;
             }
           });
           if (item.status === 0) {
@@ -149,4 +150,5 @@
       animate();
     </script>
   </body>
+  // virus의 y가 바닥을 뚫고 지나가면 status=0으로 하고 life를 1감소 하다가 0이되면 gameover화면 띄우기.... // gameover는 총알없애기, 바이러스 없애기 // life =5 ;
 </html>
