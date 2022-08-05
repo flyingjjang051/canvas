@@ -53,28 +53,39 @@
       virus02.src = "../images/virus02.png";
 
       let score = 0;
+      // const heartImg = new Image();
 
-      const flowers = [];
-      class Flower {
-        constructor(_flower) {
+      // class Heart {
+      //   constructor() {
+      //     this.width = 256;
+      //     this.height = 256;
+      //     this.x = canvas.width / 2 - this.width / 2;
+      //     this.y = canvas.height / 2 - this.height / 2;
+      //     heartImg.src = "../images/heart.png";
+      //   }
+      //   draw() {
+      //     ctx.drawImage(heartImg, this.x, this.y, this.width, this.height);
+      //   }
+      //   update() {
+      //     this.draw();
+      //   }
+      // }
+      const viruses = [];
+      class Virus {
+        constructor(_virus) {
           this.x = Math.random() * canvas.width;
           this.y = -100;
           this.rotation = 0;
           this.speedX = 0;
           this.speedY = Math.random() * 2 + 1;
           this.speedR = Math.random() + 0.5;
-          this.width = Math.random() * 50 + 30;
+          this.width = Math.random() * 50 + 50;
           this.height = this.width;
           this.status = 1;
-          this.flower = _flower;
+          this.virus = _virus;
         }
         draw() {
-          // ctx.save();
-          // ctx.translate(this.x, this.y);
-          // ctx.rotate((Math.PI / 180) * this.rotation); // radial angle
-          // ctx.drawImage(this.flower, -this.width / 2, -this.height / 2, this.width, this.height);
-          // ctx.restore();
-          ctx.drawImage(this.flower, this.x, this.y, this.width, this.height);
+          ctx.drawImage(this.virus, this.x, this.y, this.width, this.height);
         }
         update() {
           if (this.x > canvas.width || this.y > canvas.height) {
@@ -91,14 +102,10 @@
           this.draw();
         }
       }
-      const flowerSelectList = [virus01, virus02];
-      // for (let i = 0; i < 1; i++) {
-      //   const flower = new Flower(flowerSelectList[i % 2]);
-      //   flowers.push(flower);
-      // }
+      const virusSelectList = [virus01, virus02];
       function makeVirus() {
-        const flower = new Flower(flowerSelectList[Math.floor(Math.random() * 2)]);
-        flowers.push(flower);
+        const virus = new Virus(virusSelectList[Math.floor(Math.random() * 2)]);
+        viruses.push(virus);
       }
       function animate() {
         if (Math.random() < 0.02) {
@@ -108,15 +115,15 @@
         ctx.font = "30px arial black";
         ctx.fillStyle = "rgba(255,255,255,1)";
         ctx.fillText("SCORE : " + score, 50, 50);
-        flowers.forEach(function (item, idx) {
+        viruses.forEach(function (item, idx) {
           item.update();
-
           if (item.status === 0) {
-            flowers.splice(idx, 1);
+            viruses.splice(idx, 1);
           }
         });
         window.requestAnimationFrame(animate);
       }
+
       animate();
     </script>
   </body>
