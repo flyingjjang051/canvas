@@ -52,17 +52,20 @@
       const virus02 = new Image();
       virus02.src = "../images/virus02.png";
 
+      let score = 0;
+
       const flowers = [];
       class Flower {
         constructor(_flower) {
           this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
+          this.y = -100;
           this.rotation = 0;
-          this.speedX = Math.random() * 2 + 1;
+          this.speedX = 0;
           this.speedY = Math.random() * 2 + 1;
           this.speedR = Math.random() + 0.5;
-          this.width = Math.random() * 50 + 10;
+          this.width = Math.random() * 50 + 30;
           this.height = this.width;
+          this.status = 1;
           this.flower = _flower;
         }
         draw() {
@@ -75,12 +78,12 @@
         }
         update() {
           if (this.x > canvas.width || this.y > canvas.height) {
-            this.y = 0;
-            this.x = 0;
-            this.speedX = Math.random() * 2 + 1;
-            this.speedY = Math.random() * 2 + 1;
-            this.width = Math.random() * 50 + 10;
-            this.height = this.width;
+            this.status = 0;
+          }
+          if (pointX > this.x && pointX < this.x + this.width && pointY > this.y && pointY < this.y + this.height) {
+            this.status = 0;
+            score++;
+            console.log(score);
           }
           this.x += this.speedX;
           this.y += this.speedY;
@@ -89,19 +92,26 @@
         }
       }
       const flowerSelectList = [virus01, virus02];
-      for (let i = 0; i < 50; i++) {
-        const flower = new Flower(flowerSelectList[i % 2]);
+      // for (let i = 0; i < 1; i++) {
+      //   const flower = new Flower(flowerSelectList[i % 2]);
+      //   flowers.push(flower);
+      // }
+      function makeVirus() {
+        const flower = new Flower(flowerSelectList[Math.floor(Math.random() * 2)]);
         flowers.push(flower);
       }
-
       function animate() {
+        if (Math.random() < 0.02) {
+          makeVirus();
+        }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        //console.log(flowers[0].x, "===", flowers[0].width);
+        ctx.font = "30px arial black";
+        ctx.fillStyle = "rgba(255,255,255,1)";
+        ctx.fillText("SCORE : " + score, 50, 50);
         flowers.forEach(function (item, idx) {
           item.update();
 
-          if (pointX > item.x && pointX < item.x + item.width && pointY > item.y && pointY < item.y + item.height) {
-            console.log("충돌");
+          if (item.status === 0) {
             flowers.splice(idx, 1);
           }
         });
