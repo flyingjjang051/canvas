@@ -26,6 +26,9 @@
     <script src="../js/splitting.min.js"></script>
     <script src="../js/greensock/gsap.min.js"></script>
     <script src="../js/greensock/CSSRulePlugin.min.js"></script>
+    <script src="../js/virus.js"></script>
+    <script src="../js/bullet.js"></script>
+    <script src="../js/ship.js"></script>
   </head>
   <body>
     <canvas id="canvas"> </canvas>
@@ -37,6 +40,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       });
+
       let pointX = 0;
       let pointY = 0;
       canvas.addEventListener("click", function (e) {
@@ -52,57 +56,38 @@
       const virus02 = new Image();
       virus02.src = "../images/virus02.png";
 
-      let score = 0;
-      // const heartImg = new Image();
+      const shipImg = new Image();
+      shipImg.src = "../images/space.png";
 
-      // class Heart {
-      //   constructor() {
-      //     this.width = 256;
-      //     this.height = 256;
-      //     this.x = canvas.width / 2 - this.width / 2;
-      //     this.y = canvas.height / 2 - this.height / 2;
-      //     heartImg.src = "../images/heart.png";
-      //   }
-      //   draw() {
-      //     ctx.drawImage(heartImg, this.x, this.y, this.width, this.height);
-      //   }
-      //   update() {
-      //     this.draw();
-      //   }
-      // }
+      const bulletImg = new Image();
+      bulletImg.src = "../images/bullet.png";
+
+      const ship = new Ship(shipImg);
+
+      let score = 0;
+
       const viruses = [];
-      class Virus {
-        constructor(_virus) {
-          this.x = Math.random() * canvas.width;
-          this.y = -100;
-          this.rotation = 0;
-          this.speedX = 0;
-          this.speedY = Math.random() * 2 + 1;
-          this.speedR = Math.random() + 0.5;
-          this.width = Math.random() * 50 + 50;
-          this.height = this.width;
-          this.status = 1;
-          this.virus = _virus;
-        }
-        draw() {
-          ctx.drawImage(this.virus, this.x, this.y, this.width, this.height);
-        }
-        update() {
-          if (this.x > canvas.width || this.y > canvas.height) {
-            this.status = 0;
-          }
-          if (pointX > this.x && pointX < this.x + this.width && pointY > this.y && pointY < this.y + this.height) {
-            this.status = 0;
-            score++;
-            console.log(score);
-          }
-          this.x += this.speedX;
-          this.y += this.speedY;
-          this.rotation += this.speedR;
-          this.draw();
-        }
-      }
+      const bullets = [];
+
       const virusSelectList = [virus01, virus02];
+
+      window.addEventListener("keydown", function (e) {
+        console.log(e);
+        if (e.code === "ArrowLeft") {
+          ship.speedX = -20;
+        }
+        if (e.code === "ArrowRight") {
+          ship.speedX = 20;
+        }
+        if (e.code === "Space") {
+          const bullet = new Bullet(bulletImg, ship.x + ship.width / 2 - 8, ship.y);
+          bullets.push(bullet);
+        }
+      });
+      window.addEventListener("keyup", function (e) {
+        ship.speedX = 0;
+      });
+
       function makeVirus() {
         const virus = new Virus(virusSelectList[Math.floor(Math.random() * 2)]);
         viruses.push(virus);
@@ -115,11 +100,16 @@
         ctx.font = "30px arial black";
         ctx.fillStyle = "rgba(255,255,255,1)";
         ctx.fillText("SCORE : " + score, 50, 50);
+
+        ship.update();
         viruses.forEach(function (item, idx) {
           item.update();
           if (item.status === 0) {
             viruses.splice(idx, 1);
           }
+        });
+        bullets.forEach(function (item, idx) {
+          item.update();
         });
         window.requestAnimationFrame(animate);
       }
