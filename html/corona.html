@@ -45,8 +45,8 @@
       let pointX = 0;
       let pointY = 0;
       canvas.addEventListener("click", function (e) {
-        pointX = e.x;
-        pointY = e.y;
+        //pointX = e.x;
+        //pointY = e.y;
       });
 
       const ctx = canvas.getContext("2d");
@@ -85,6 +85,7 @@
         }
         if (e.code === "Space") {
           spaceDown = true;
+          makeBullet();
         }
       });
       window.addEventListener("keyup", function (e) {
@@ -97,6 +98,11 @@
         const virus = new Virus(virusSelectList[Math.floor(Math.random() * 2)]);
         viruses.push(virus);
       }
+      function makeBullet() {
+        const bullet = new Bullet(bulletImg, ship.x + ship.width / 2 - 8, ship.y);
+        bullets.push(bullet);
+      }
+      let bulletCount = 0;
       function animate() {
         if (Math.random() < 0.02) {
           makeVirus();
@@ -112,10 +118,12 @@
           ship.speedX = 10;
         }
         if (spaceDown) {
-          const bullet = new Bullet(bulletImg, ship.x + ship.width / 2 - 8, ship.y);
-          bullets.push(bullet);
-          console.log("aa");
+          bulletCount++;
+          if (bulletCount > 2) {
+            bulletCount = 0;
+          }
         }
+
         ship.update();
         viruses.forEach(function (item, idx) {
           item.update();
@@ -125,6 +133,15 @@
         });
         bullets.forEach(function (item, idx) {
           item.update();
+          viruses.forEach(function (item02, idx02) {
+            if (item.x > item02.x && item.x < item02.x + item02.width - item.width / 2 && item.y < item02.y + item02.height) {
+              item.status = 0;
+              item02.status = 0;
+            }
+          });
+          if (item.status === 0) {
+            bullets.splice(idx, 1);
+          }
         });
         window.requestAnimationFrame(animate);
       }

@@ -1,6 +1,6 @@
 class Virus {
   constructor(_virus) {
-    this.x = Math.random() * canvas.width;
+    this.x = Math.random() * canvas.width - 200;
     this.y = -100;
     this.rotation = 0;
     this.speedX = 0;

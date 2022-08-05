@@ -12,6 +12,9 @@ class Bullet {
     ctx.drawImage(this.bullet, this.x, this.y, this.width, this.height);
   }
   update() {
+    if (this.y > canvas.height) {
+      this.status = 0;
+    }
     this.y -= this.speedY;
     this.draw();
   }

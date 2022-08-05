@@ -13,6 +13,12 @@ class Ship {
   }
   update() {
     this.x += this.speedX;
+    if (this.x < 0) {
+      this.x = 0;
+    }
+    if (this.x > canvas.width - this.width) {
+      this.x = canvas.width - this.width;
+    }
     this.draw();
   }
 }
